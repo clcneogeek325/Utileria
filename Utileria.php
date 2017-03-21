@@ -12,6 +12,32 @@ use yii\helpers\VarDumper;
 
 
 class Utileria {
+	
+	    
+    public static function array_combinar($array1,$array2){
+
+        $array_final = [];
+        $array_indices = [];
+
+        if (count($array1) > count($array2)){
+           $array_final = array_chunk($array1,count($array2));
+           $array_indices = $array2;
+        }else{
+           $array_final = array_chunk($array2,count($array1));
+           $array_indices = $array1;
+        }
+
+        $array_out = [];
+        foreach ($array_final as $key1=>$value1) {
+            foreach ($value1 as $key2=>$value2) {
+                $val= $array_final[$key1][$key2];
+                $array_out[$key1][$array_indices[$key2]] = $value2;
+            }
+        }
+        return $array_out;
+    }
+	
+	
 
 	public static function getCSV($path)
 	{

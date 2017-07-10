@@ -170,6 +170,36 @@ class Utileria {
 
         return $final_date;
     }
+    
+    // retorna el abcedario en un arreglo  
+    public static function getAbcedario() {
+        $array = array();
+        for ($i = 65; $i <= 90; $i++) {
+                $array[] = chr($i);
+        }
+        return $array;
+    }
+
+    
+    // retorna el indice de un carcter del abcedario
+    public static function getIndexByChar($character = NULL) {
+        $abc = static::getAbcedario();
+        foreach ($abc as $key=>$value) {
+              if ($value == $character) {
+                   return $key;
+                }
+        }
+        $contador = 26;
+        foreach ($abc as $value1) {
+            foreach ($abc as $value2) {
+                    if ($value1.$value2 == $character) {
+                           return $contador;
+                        }
+                        $contador++;
+            }
+        }
+
+    }
 
     
 }
